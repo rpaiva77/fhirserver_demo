@@ -14,7 +14,7 @@ In this step we'll set up and run an instance of InterSystems IRIS for Health. W
 Run the following command (change /my_local_host/mount_path to the appropriate path on your system)
 $ docker run --name irishealth -d --publish 9091:51773 --publish 9092:52773 --volume /my_local_host/mount_path:/durable containers.intersystems.com/intersystems/irishealth:2020.4.0.524.0
 
-You should be able to acess InterSystems IRIS for Health Management Portal: http://localhost:9092/csp/sys/%25CSP.Portal.Home.zen?$NAMESPACE=HSLIB
+  You should be able to acess InterSystems IRIS for Health Management Portal: http://localhost:9092/csp/sys/%25CSP.Portal.Home.zen?$NAMESPACE=HSLIB
 
 2) Start bash console from terminal:
 $ docker exec -it irishealth bash
@@ -27,3 +27,15 @@ USER>zn "HSLIB"
 
 5) Install FHIR server on a new namespace called 'FHIRSERVER':
 USER>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
+
+6) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:
+  metadata: HL7v40
+  interaction strategy: FHIRServer.Storage.Json.InteractionsStrategy
+  URL: /csp/healthshare/fhirserver/fhir/r4
+
+7) Now we will load sample data from patients located on local file systems into the FHIR server. You should start by downloading patient data to your local file system. Run the following commands from InterSystems IRIS for Health Terminal:
+  set $namespace = "FHIRSERVER"
+  set sc = ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/local_path/for_your_fhir_data","FHIRServer",   "/csp/healthshare/fhirserver/fhir/r4")
+  write sc
+  
+  This may take a few minutes - depending on the number and content of patient bundles. In the end you should see 1 as the output of 'write sc' command.
