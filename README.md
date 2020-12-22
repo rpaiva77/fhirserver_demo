@@ -39,3 +39,7 @@ USER>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
   write sc
   
   This may take a few minutes - depending on the number and content of patient bundles. In the end you should see 1 as the output of 'write sc' command.
+  
+8) A few requests to test:
+Metadata: http://localhost:9092/csp/healthshare/fhirserver/fhir/r4/metadata
+
