@@ -2,10 +2,10 @@
 
 # Context
 This is a simple guide about 'how-to' deploy and use a fhir server based on InterSystems IRIS for Health.
-The setting up process is detailed in a 'step-by-step' fashion. It is possible/recomended to automated this process (e.g. using docker compose) once you're proficient with all components. The idea here is to provide an explanation for every step.
+The setting up process is detailed in a 'step-by-step' fashion. It is possible/recommended to automated this process (e.g. using docker compose) once you're proficient with all components. The idea here is to provide an explanation for every step.
 
 # Assumptions
-You'll need to have a docker deamon running on installation machine. Should you need any details, look here: https://docs.docker.com/engine/install/
+You'll need to have a docker daemon running on installation machine. Should you need any details, look here: https://docs.docker.com/engine/install/
 <br>You'll need to able to run a jupyter notebook. Should you need any details, look here: https://test-jupyter.readthedocs.io/en/latest/running.html#running
 
 # Docker pull/run
