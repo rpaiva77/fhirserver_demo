@@ -25,7 +25,7 @@ $ iris session IRIS
 USER>zn "HSLIB"
 
 5) Install FHIR server on a new namespace called 'FHIRSERVER':<br>
-USER>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
+HSLIB>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
 
 6) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:<br>
   metadata: HL7v40<br>
