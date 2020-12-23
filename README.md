@@ -8,7 +8,7 @@ The setting up process is detailed in a 'step-by-step' fashion. It is possible/r
 You'll need to have a docker deamon running on installation machine. Should you need any details, look here: https://docs.docker.com/engine/install/
 
 # Docker pull/run
-In this step we'll set up and run an instance of InterSystems IRIS for Health. We'll be using latest version available here:\ 
+In this step we'll set up and run an instance of InterSystems IRIS for Health. We'll be using latest version available here:&nbsp; 
 https://hub.docker.com/_/intersystems-iris-for-health/plans/80ae1325-d535-484e-8307-b643c2865dd8?tab=instructions
 
 1) Pull and run InterSystrms IRIS for Health, running in background (-d), mapping ports (--publish 9091:51773 and --publish 9092:52773) and binding a mount volume (--volume /my_local_host/mount_path:/durable). This container will be named 'irishealth'. Ports 51773 and 52773 inside de container will be exposed on ports 9091 and 9092 outside the container. The folder /my_local_host/mount_path on local machine will be mounted inside the container on /durable mount point. 
