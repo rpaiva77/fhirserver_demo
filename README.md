@@ -15,28 +15,27 @@ https://hub.docker.com/_/intersystems-iris-for-health/plans/80ae1325-d535-484e-8
 Run the following command (change /my_local_host/mount_path to the appropriate path on your system):<br>
 $ docker run --name irishealth -d --publish 9091:51773 --publish 9092:52773 --volume /my_local_host/mount_path:/durable containers.intersystems.com/intersystems/irishealth:2020.4.0.524.0<br><br>You should be able to acess InterSystems IRIS for Health Management Portal:<br> http://localhost:9092/csp/sys/%25CSP.Portal.Home.zen?$NAMESPACE=HSLIB
 
-2) Start bash console from terminal:&nbsp;
+2) Start bash console from terminal:<br>
 $ docker exec -it irishealth bash
 
-3) Start iris terminal:&nbsp;
+3) Start iris terminal:<br>
 $ iris session IRIS
 
-4) Change from namespace 'USER' to namespace 'HSLIB':&nbsp;
+4) Change from namespace 'USER' to namespace 'HSLIB':<br>
 USER>zn "HSLIB"
 
-5) Install FHIR server on a new namespace called 'FHIRSERVER':&nbsp;
+5) Install FHIR server on a new namespace called 'FHIRSERVER':<br>
 USER>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
 
-6) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:&nbsp;
-  metadata: HL7v40&nbsp;
-  interaction strategy: FHIRServer.Storage.Json.InteractionsStrategy&nbsp;
-  URL: /csp/healthshare/fhirserver/fhir/r4&nbsp;
+6) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:<br>
+  metadata: HL7v40<br>
+  interaction strategy: FHIRServer.Storage.Json.InteractionsStrategy<br>
+  URL: /csp/healthshare/fhirserver/fhir/r4<br>
 
-7) Now we will load sample data from patients located on local file systems into the FHIR server. You should start by downloading patient data to your local file system. Run the following commands from InterSystems IRIS for Health Terminal:&nbsp;
-  set $namespace = "FHIRSERVER"&nbsp;
-  set sc = ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/local_path/for_your_fhir_data","FHIRServer",   "/csp/healthshare/fhirserver/fhir/r4")&nbsp;
-  write sc&nbsp;
-  
+7) Now we will load sample data from patients located on local file systems into the FHIR server. You should start by downloading patient data to your local file system.<br>Run the following commands from InterSystems IRIS for Health Terminal:<br>
+  set $namespace = "FHIRSERVER"<br>
+  set sc = ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/local_path/for_your_fhir_data","FHIRServer",   "/csp/healthshare/fhirserver/fhir/r4")<br>
+  write<br><br>
   This may take a few minutes - depending on the number and content of patient bundles. In the end you should see 1 as the output of 'write sc' command.
   
 8) Attached you'll find a Jupyter Notebook with a few interactions with FHIR Server API. All interactions are based on the data you'll find in fhir_data folder. Should you use different data sets please review every interaction.
