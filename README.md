@@ -6,6 +6,7 @@ The setting up process is detailed in a 'step-by-step' fashion. It is possible/r
 
 # Assumptions
 You'll need to have a docker deamon running on installation machine. Should you need any details, look here: https://docs.docker.com/engine/install/
+You'll need to able to run a jupyter notebook. Should you need any details, look here: https://test-jupyter.readthedocs.io/en/latest/running.html#running
 
 # Docker pull/run
 In this step we'll set up and run an instance of InterSystems IRIS for Health. We'll be using latest version available here:<br> 
