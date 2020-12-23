@@ -22,6 +22,8 @@ $ docker exec -it irishealth bash
 3) Start iris terminal:<br>
 $ iris session IRIS
 
+# Install/Configure FHIR Server
+
 4) Change from namespace 'USER' to namespace 'HSLIB':<br>
 USER>zn "HSLIB"
 
