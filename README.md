@@ -30,16 +30,20 @@ USER>zn "HSLIB"
 5) Install FHIR server on a new namespace called 'FHIRSERVER':<br>
 HSLIB>do ##class(HS.HC.Util.Installer).InstallFoundation("FHIRSERVER")
 
-6) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:<br>
+6) Navigate to the InterSystems IRIS for Health Management Portal homepage: http://<server>:<port>/csp/sys/%25CSP.Portal.Home.zen?$NAMESPACE=HSLIB To login use de default credentials (user/password): superuser/SYS or _SYSTEM/SYS
+
+7) From the InterSystems IRIS for Health Management Portal homepage, switch to the FHIRSERVER namespace and navigate to Health > FHIR Configuration > Server Configuration to create a FHIR R4 server endpoint that stores FHIR data as JSON in a FHIR resource repository. Click the plus sign (+) and enter the following settings:<br>
   metadata: HL7v40<br>
   interaction strategy: FHIRServer.Storage.Json.InteractionsStrategy<br>
   URL: /csp/healthshare/fhirserver/fhir/r4<br>
+  
+8) Edit your FHIR R4 server endpoint and check the appropriate box to: Allow Unauthenticated Access
 
-7) Now we will load sample data from patients located on local file systems into the FHIR server. You should start by downloading patient data to your local file system.<br>Run the following commands from InterSystems IRIS for Health Terminal:<br>
+9) Now we will load sample data from patients located on local file systems into the FHIR server. You should start by downloading patient data to your local file system.<br>Run the following commands from InterSystems IRIS for Health Terminal:<br>
   set $namespace = "FHIRSERVER"<br>
   set sc = ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/local_path/for_your_fhir_data","FHIRServer",   "/csp/healthshare/fhirserver/fhir/r4")<br>
   write<br><br>
   This may take a few minutes - depending on the number and content of patient bundles. In the end you should see 1 as the output of 'write sc' command.
   
-8) Attached you'll find a Jupyter Notebook with a few interactions with FHIR Server API. All interactions are based on the data you'll find in fhir_data folder. Should you use different data sets please review every interaction.
+10) Attached you'll find a Jupyter Notebook with a few interactions with FHIR Server API. All interactions are based on the data you'll find in fhir_data folder. Should you use different data sets please review every interaction.
 
